@@ -1,0 +1,29 @@
+<div>
+  <!-- Botão para abrir o formulário -->
+  <button (click)="openForm()">Add Task</button>
+
+  <!-- Overlay que escurece o fundo, clicando nele também fecha o modal -->
+  <div *ngIf="showForm" class="overlay" (click)="closeForm()"></div>
+
+  <!-- Container do formulário, aparece somente se showForm for true -->
+  <div *ngIf="showForm" class="form-container" (click)="$event.stopPropagation()">
+    <form (ngSubmit)="onSubmit()">
+      <label>
+        Title:
+        <input type="text" [(ngModel)]="task.title" name="title" required>
+      </label>
+      <label>
+        Summary:
+        <textarea [(ngModel)]="task.summary" name="summary" required></textarea>
+      </label>
+      <label>
+        Due Date:
+        <input type="date" [(ngModel)]="task.dueDate" name="dueDate" required>
+      </label>
+      <button type="submit">Save</button>
+      <button type="button" (click)="closeForm()">Cancel</button>
+    </form>
+  </div>
+</div>
+
+

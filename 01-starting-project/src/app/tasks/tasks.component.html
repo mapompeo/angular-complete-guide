@@ -1,0 +1,21 @@
+<section id="tasks">
+  <header>
+    <h2>{{ name }}'s Tasks</h2>
+    <menu>
+      <button (click)="onAddTaskButtonClick()">Add Task</button>
+    </menu>
+  </header>
+  <!-- Exibe o modal de adicionar task quando showForm é true -->
+  <app-add-task
+    *ngIf="showForm"
+    [task]="newTask"
+    (taskAdded)="handleTaskAdded($event)"
+  ></app-add-task>
+  <ul>
+    @for (task of selectedUserTasks; track task.id) {
+    <li>
+      <app-task [task]="task" (complete)="onCompleteTask($event)"></app-task>
+    </li>
+    }
+  </ul>
+</section>
